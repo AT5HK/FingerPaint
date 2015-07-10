@@ -14,6 +14,7 @@
 		509B390F1B504FE60095623E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 509B390E1B504FE60095623E /* Images.xcassets */; };
 		509B39121B504FE60095623E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 509B39101B504FE60095623E /* LaunchScreen.xib */; };
 		509B391E1B504FE60095623E /* FingerPaintTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 509B391D1B504FE60095623E /* FingerPaintTests.m */; };
+		509B39291B5050FA0095623E /* FPCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 509B39281B5050FA0095623E /* FPCustomView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		509B39171B504FE60095623E /* FingerPaintTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FingerPaintTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		509B391C1B504FE60095623E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		509B391D1B504FE60095623E /* FingerPaintTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FingerPaintTests.m; sourceTree = "<group>"; };
+		509B39271B5050FA0095623E /* FPCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPCustomView.h; sourceTree = "<group>"; };
+		509B39281B5050FA0095623E /* FPCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPCustomView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,8 @@
 				509B39061B504FE60095623E /* AppDelegate.m */,
 				509B39081B504FE60095623E /* ViewController.h */,
 				509B39091B504FE60095623E /* ViewController.m */,
+				509B39271B5050FA0095623E /* FPCustomView.h */,
+				509B39281B5050FA0095623E /* FPCustomView.m */,
 				509B390B1B504FE60095623E /* Main.storyboard */,
 				509B390E1B504FE60095623E /* Images.xcassets */,
 				509B39101B504FE60095623E /* LaunchScreen.xib */,
@@ -220,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				509B390A1B504FE60095623E /* ViewController.m in Sources */,
+				509B39291B5050FA0095623E /* FPCustomView.m in Sources */,
 				509B39071B504FE60095623E /* AppDelegate.m in Sources */,
 				509B39041B504FE60095623E /* main.m in Sources */,
 			);
