@@ -18,11 +18,10 @@
 
 @implementation FPCustomView
 
-- (id)initWithCoder:(NSCoder *)aDecoder // (1)
-{
+- (id)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder])
     {
-        [self setMultipleTouchEnabled:NO]; // (2)
+        [self setMultipleTouchEnabled:NO];
         [self setBackgroundColor:[UIColor whiteColor]];
         self.paths = [NSMutableArray array];
     }
@@ -50,7 +49,7 @@
     CGPoint p = [touch locationInView:self];
     [self.currentPath removeAllPoints];
     [self.currentPath moveToPoint:self.startPoint];
-    [self.currentPath addLineToPoint:p]; // (4)
+    [self.currentPath addLineToPoint:p];
     [self setNeedsDisplay];
 }
 
