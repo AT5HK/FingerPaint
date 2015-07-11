@@ -13,6 +13,11 @@
 @property (nonatomic) NSMutableArray *paths;
 @property (nonatomic) UIBezierPath *currentPath;
 @property (nonatomic) CGPoint startPoint;
+@property (nonatomic) NSArray *arrayOfColors;
+@property (nonatomic) NSMutableArray *bezierColorArray;
+@property (nonatomic) UIColor *colorFromArray;
+@property (nonatomic) NSTimer *timer;
+@property (assign) float time;
 
 @end
 
@@ -24,29 +29,53 @@
         [self setMultipleTouchEnabled:NO];
         [self setBackgroundColor:[UIColor whiteColor]];
         self.paths = [NSMutableArray array];
+        self.bezierColorArray = [NSMutableArray array];
+        self.arrayOfColors = @[
+                               [UIColor grayColor],
+                               [UIColor blueColor],
+                               [UIColor yellowColor],
+                               [UIColor redColor]
+                               ];
     }
     return self;
 }
 
+//- (instancetype)init
+//{
+//    self = [super init];
+//    if (self) {
+//        
+//    }
+//    return self;
+//}
+
 - (void)drawRect:(CGRect)rect {
-    [[UIColor blackColor] setStroke];
+    int startColor = 0;
     for(UIBezierPath *path in self.paths) {
+        [self.bezierColorArray[startColor] setStroke];
         [path stroke];
+        startColor++;
     }
-//    NSLog(@"call draw rect");
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.001 target:self selector:@selector(incrementCounter) userInfo:nil repeats:YES];
+    self.colorFromArray = (UIColor*)(self.arrayOfColors[self.currentColor]);
     UITouch *touch = [touches anyObject];
     self.startPoint = [touch locationInView:self];
     self.currentPath = [UIBezierPath bezierPath];
     [self.currentPath setLineWidth:5.0];
     [self.paths addObject:self.currentPath];
+    [self.bezierColorArray addObject:self.colorFromArray];
+     NSLog(@"currentColor Num: %d",self.currentColor);
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
     CGPoint p = [touch locationInView:self];
+    float velocity = [self velocityBetweenPoints:p startingLocation:self.startPoint];
+    [self.currentPath setLineWidth:(velocity/10)];
+    NSLog(@"speed: %f", velocity);
     [self.currentPath removeAllPoints];
     [self.currentPath moveToPoint:self.startPoint];
     [self.currentPath addLineToPoint:p];
@@ -54,11 +83,26 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.timer invalidate];
     [self touchesMoved:touches withEvent:event];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
     [self touchesEnded:touches withEvent:event];
+}
+
+-(float)velocityBetweenPoints:(CGPoint)currentLocation startingLocation:(CGPoint)startLocation {
+    CGFloat distance;
+    CGFloat dx = currentLocation.x - startLocation.x;
+    CGFloat dy = currentLocation.y - startLocation.y;
+    distance = sqrt(dx*dx + dy*dy );
+    return (float)distance/self.time;
+}
+
+#pragma mark - time methods
+
+-(void)incrementCounter{
+    self.time += 0.001f;
 }
 
 /*

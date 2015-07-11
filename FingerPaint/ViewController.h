@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@class FPCustomView;
 
 @interface ViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet FPCustomView *whiteBoardView;
 
 
 @end

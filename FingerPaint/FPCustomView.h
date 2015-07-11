@@ -10,4 +10,6 @@
 
 @interface FPCustomView : UIView
 
+@property (nonatomic) int currentColor;
+
 @end
